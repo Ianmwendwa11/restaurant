@@ -15,6 +15,8 @@ import { Check, Copy, Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FaInstagram } from "react-icons/fa"
 import { ReservationModal } from "@/components/ReservationModal"
 import { MenuSection } from "@/components/MenuSection"
+import { MobileNav } from "@/components/MobileNav"
+
 
 // Gallery images should be placed in the public/ directory.
 const GALLERY_IMAGES = [
@@ -128,7 +130,10 @@ export default function Home() {
             </a>
           </nav>
 
-          <ReservationModal isScrolled={isScrolled} />
+          <div className="flex items-center gap-2">
+            <ReservationModal isScrolled={isScrolled} />
+            <MobileNav isScrolled={isScrolled} />
+          </div>
         </div>
       </motion.header>
 
