@@ -41,11 +41,29 @@ export function ReservationModal({ isScrolled = false }: ReservationModalProps) 
   const [seating, setSeating] = useState("Garden Patio")
   const [time, setTime] = useState("7:30 PM")
   const [date, setDate] = useState<Date | undefined>(new Date())
+  const RESTAURANT_WHATSAPP = "254725269443"
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    const formattedDate = date ? date.toDateString() : "Upcoming Date"
+    const message = [
+      `Hello For You Chinese Restaurant! I'd like to reserve a table:`,
+      ``,
+      `*Name:* ${name}`,
+      `*Phone:* ${phone}`,
+      `*Date:* ${formattedDate}`,
+      `*Time:* ${time}`,
+      `*Party Size:* ${guests}`,
+      `*Seating:* ${seating}`,
+    ].join("\n")
+
+    const whatsappUrl = `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodeURIComponent(message)}`
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer")
     setSubmitted(true)
   }
+
 
   const handleReset = () => {
     setSubmitted(false)

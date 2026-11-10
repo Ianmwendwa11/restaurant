@@ -17,6 +17,8 @@ import { ReservationModal } from "@/components/ReservationModal"
 import { MenuSection } from "@/components/MenuSection"
 import { MobileNav } from "@/components/MobileNav"
 import { HeroSection } from "@/components/HeroSection"
+import { GallerySection } from "@/components/GallerySection"
+
 
 
 // Gallery images should be placed in the public/ directory.
@@ -164,57 +166,8 @@ export default function Home() {
      <HeroSection />
 
 
-      {/* Gallery carousel */}
-      <section id="gallery" className="bg-[#dcd5ce] py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
-        >
-          <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-zinc-700">
-            Our Gallery
-          </h2>
-          <div className="mx-auto mt-3 h-0.5 w-12 bg-[#8c3b2b]" />
-        </motion.div>
+     <GallerySection />
 
-        <div className="w-full bg-[#8c3b2b] px-4 py-12 shadow-inner sm:px-12">
-          <div className="relative mx-auto max-w-7xl">
-            <Carousel
-              opts={{ align: "start", loop: true }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-4">
-                {GALLERY_IMAGES.map((item) => (
-                  <CarouselItem
-                    key={item.id}
-                    className="pl-4 md:basis-1/2 lg:basis-1/3"
-                  >
-                    <div className="group relative aspect-4/3 w-full overflow-hidden border-2 border-white/10 bg-zinc-900 shadow-lg">
-                      <Image
-                        src={item.src}
-                        alt={item.alt}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/80 via-transparent to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                        <p className="text-sm font-medium tracking-wide text-white">
-                          {item.caption}
-                        </p>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-
-              <CarouselPrevious className="left-2 h-12 w-12 rounded-full border-2 border-white bg-black/50 text-white backdrop-blur-sm transition-all hover:bg-white hover:text-[#8c3b2b] sm:-left-6" />
-              <CarouselNext className="right-2 h-12 w-12 rounded-full border-2 border-white bg-black/50 text-white backdrop-blur-sm transition-all hover:bg-white hover:text-[#8c3b2b] sm:-right-6" />
-            </Carousel>
-          </div>
-        </div>
-      </section>
 
       <MenuSection />
 
