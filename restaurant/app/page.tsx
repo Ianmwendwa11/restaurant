@@ -14,7 +14,7 @@ import {
 import { Check, Copy, Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FaInstagram } from "react-icons/fa"
 import { ReservationModal } from "@/components/ReservationModal"
-
+import { MenuSection } from "@/components/MenuSection"
 
 // Gallery images should be placed in the public/ directory.
 const GALLERY_IMAGES = [
@@ -116,9 +116,7 @@ export default function Home() {
               isScrolled ? "text-zinc-700" : "text-white/90"
             }`}
           >
-            <a href="#about" className="transition-colors hover:text-red-500">
-              About
-            </a>
+           
             <a href="#gallery" className="transition-colors hover:text-red-500">
               Gallery
             </a>
@@ -252,18 +250,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Menu placeholder */}
-      <section
-        id="menu"
-        className="flex min-h-[70vh] flex-col items-center justify-center bg-[#1c1615] px-6 text-center text-zinc-400"
-      >
-        <h2 className="text-2xl font-bold uppercase tracking-widest text-zinc-300">
-          Menu Page Section
-        </h2>
-        <p className="mt-2 max-w-md text-sm text-zinc-500">
-          Ready for your custom menu design and interactive category tabs.
-        </p>
-      </section>
+      <MenuSection />
+
 
       {/* Garden patio and contact footer */}
       <footer
