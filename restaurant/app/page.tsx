@@ -16,6 +16,7 @@ import { FaInstagram } from "react-icons/fa"
 import { ReservationModal } from "@/components/ReservationModal"
 import { MenuSection } from "@/components/MenuSection"
 import { MobileNav } from "@/components/MobileNav"
+import { HeroSection } from "@/components/HeroSection"
 
 
 // Gallery images should be placed in the public/ directory.
@@ -29,20 +30,42 @@ const GALLERY_IMAGES = [
   {
     id: 2,
     src: "/gallery-2.jpg",
-    alt: "Signature sizzling platters",
-    caption: "Authentic Sizzling Dishes",
+    alt: "Dining hall with warm lighting and wooden furniture",
+    caption: "Main Dining Hall",
   },
   {
     id: 3,
     src: "/gallery-3.jpg",
-    alt: "Garden patio seating",
-    caption: "Outdoor Garden Seating",
+    alt: "Dumplings",
+    caption: "Handmade dumplings seared until crispy on the bottom, served with ginger-soy dipping sauce.",
   },
+  
   {
-    id: 4,
-    src: "/gallery-4.jpg",
+    id: 5,
+    src: "/gallery-5.jpg",
     alt: "Family table set for sharing",
-    caption: "Built For Sharing",
+    caption: "Fried Rice (served alongside individual portion plates, dipping sauces, and condiments).",
+  },
+
+   {
+    id: 6,
+    src: "/gallery-6.jpg",
+    alt: "Family table set for sharing",
+    caption: "A Sizzling Wok Dish (such as Sizzling Beef or Sizzling Chicken with vegetables like onions, carrots, and bell peppers served on a hot cast-iron plate).",
+  },
+
+   {
+    id: 7,
+    src: "/gallery-7.jpg",
+    alt: "Family table set for sharing",
+    caption: "restaurant entrance gate",
+  },
+
+   {
+    id: 8,
+    src: "/gallery-8.jpg",
+    alt: "Family table set for sharing",
+    caption: "outdoor water fountain feature",
   },
 ]
 
@@ -138,70 +161,8 @@ export default function Home() {
       </motion.header>
 
       {/* Hero banner */}
-      <section
-        id="about"
-        className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-zinc-950 px-6 text-center text-white"
-      >
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/hero-bg.jpg"
-            alt="For You Restaurant ambiance"
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-            className="object-cover opacity-55"
-          />
-        </div>
+     <HeroSection />
 
-        <div className="absolute inset-0 z-10 bg-linear-to-b from-black/60 via-black/30 to-black/70" />
-
-        <div className="relative z-20 max-w-4xl space-y-6">
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xs font-bold uppercase tracking-[0.25em] text-red-400 sm:text-sm"
-          >
-            Nairobi&apos;s Favorite Chinese Tradition
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-serif text-6xl font-normal italic tracking-wide text-white drop-shadow-md sm:text-8xl md:text-9xl"
-          >
-            For you
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            className="pt-6"
-          >
-            <Button
-              asChild
-              variant="outline"
-              className="rounded-none border-white/40 bg-black/20 px-8 py-6 text-sm font-semibold uppercase tracking-widest text-white backdrop-blur-sm transition-all hover:bg-white hover:text-zinc-900"
-            >
-              <a href="#gallery">Explore Gallery</a>
-            </Button>
-          </motion.div>
-        </div>
-
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 opacity-70"
-          aria-hidden="true"
-        >
-          <div className="flex h-9 w-5 justify-center rounded-full border-2 border-white p-1">
-            <div className="h-1.5 w-1.5 animate-bounce rounded-full bg-white" />
-          </div>
-        </motion.div>
-      </section>
 
       {/* Gallery carousel */}
       <section id="gallery" className="bg-[#dcd5ce] py-20">
