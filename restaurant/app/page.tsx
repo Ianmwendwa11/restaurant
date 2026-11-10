@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/carousel"
 import { Check, Copy, Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FaInstagram } from "react-icons/fa"
+import { ReservationModal } from "@/components/ReservationModal"
+
 
 // Gallery images should be placed in the public/ directory.
 const GALLERY_IMAGES = [
@@ -128,17 +130,7 @@ export default function Home() {
             </a>
           </nav>
 
-          <Button
-            asChild
-            size="sm"
-            className={`font-semibold tracking-wide transition-all duration-300 ${
-              isScrolled
-                ? "bg-red-700 text-white shadow-md hover:bg-red-800"
-                : "bg-white text-zinc-900 shadow-lg hover:bg-white/90"
-            }`}
-          >
-            <a href="#location">Reservations</a>
-          </Button>
+          <ReservationModal isScrolled={isScrolled} />
         </div>
       </motion.header>
 
