@@ -4,6 +4,7 @@ import { useState } from "react"
 import { CalendarIcon, CheckCircle2, Users, Utensils } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
+import { motion, AnimatePresence } from "framer-motion"
 import {
   Dialog,
   DialogContent,
@@ -41,28 +42,34 @@ export function ReservationModal({ isScrolled = false }: ReservationModalProps) 
   const [seating, setSeating] = useState("Garden Patio")
   const [time, setTime] = useState("7:30 PM")
   const [date, setDate] = useState<Date | undefined>(new Date())
-  const RESTAURANT_WHATSAPP = "254725269443"
+  const RESTAURANT_WHATSAPP = "254735536090"
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault()
 
-    const formattedDate = date ? date.toDateString() : "Upcoming Date"
-    const message = [
-      `Hello For You Chinese Restaurant! I'd like to reserve a table:`,
-      ``,
-      `*Name:* ${name}`,
-      `*Phone:* ${phone}`,
-      `*Date:* ${formattedDate}`,
-      `*Time:* ${time}`,
-      `*Party Size:* ${guests}`,
-      `*Seating:* ${seating}`,
-    ].join("\n")
+  if (!date || !name.trim() || !phone.trim()) return
 
-    const whatsappUrl = `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodeURIComponent(message)}`
+  const formattedDate = date.toDateString()
 
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer")
-    setSubmitted(true)
-  }
+  const message = [
+    "Hello For You Chinese Restaurant! I'd like to request a table reservation:",
+    "",
+    `*Name:* ${name.trim()}`,
+    `*Phone:* ${phone.trim()}`,
+    `*Date:* ${formattedDate}`,
+    `*Time:* ${time}`,
+    `*Party Size:* ${guests}`,
+    `*Seating:* ${seating}`,
+    "",
+    "Please confirm availability. Thank you!",
+  ].join("\n")
+
+  const whatsappUrl = `https://wa.me/${RESTAURANT_WHATSAPP}?text=${encodeURIComponent(message)}`
+
+  window.open(whatsappUrl, "_blank", "noopener,noreferrer")
+  setSubmitted(true)
+}
 
 
   const handleReset = () => {
@@ -88,7 +95,7 @@ export function ReservationModal({ isScrolled = false }: ReservationModalProps) 
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-120 bg-[#fafafa] border-zinc-200 text-zinc-900">
+      <DialogContent className="sm:max-w-120 max-h-[90vh] overflow-y-auto bg-[#fafafa] border-zinc-200 text-zinc-900 shadow-2xl">
         {!submitted ? (
           <>
             <DialogHeader>
@@ -208,9 +215,28 @@ export function ReservationModal({ isScrolled = false }: ReservationModalProps) 
         ) : (
           <div className="py-8 text-center space-y-4">
             <CheckCircle2 className="mx-auto h-14 w-14 text-green-600" />
-            <h3 className="font-serif text-3xl italic text-zinc-900">
-              Table Reserved!
-            </h3>
+           <h3 className="font-serif text-3xl italic text-[#8c3b2b]">
+  Request Sent!
+</h3>
+
+<p className="mx-auto max-w-sm text-sm leading-relaxed text-zinc-600">
+  Asante,{" "}
+  <span className="font-semibold text-zinc-900">{name}</span>!
+  Your reservation request for{" "}
+  <span className="font-semibold text-zinc-900">{guests}</span>{" "}
+  on{" "}
+  <span className="font-semibold text-zinc-900">
+    {date?.toDateString()}
+  </span>{" "}
+  at{" "}
+  <span className="font-semibold text-zinc-900">{time}</span>{" "}
+  has been prepared in WhatsApp.
+</p>
+
+<p className="text-xs leading-relaxed text-zinc-500">
+  Your table is not confirmed until the restaurant responds.
+  We'll be in touch via WhatsApp or SMS.
+</p>
             <p className="text-sm text-zinc-600 max-w-sm mx-auto leading-relaxed">
               Asante, <span className="font-semibold text-zinc-900">{name}</span>! We have logged your request for{" "}
               <span className="font-semibold text-zinc-900">{guests}</span> ({seating}) on{" "}

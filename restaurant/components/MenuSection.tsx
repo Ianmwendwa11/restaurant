@@ -193,51 +193,68 @@ export function MenuSection() {
             className="grid gap-6 md:grid-cols-2"
           >
             {currentCategory.items.map((dish, index) => (
-              <motion.div
-                key={dish.name}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.06 }}
-                className="group flex flex-col justify-between border border-white/10 bg-white/3 p-6 transition-all duration-300 hover:border-[#8c3b2b]/80 hover:bg-white/6"
-              >
-                <div>
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-serif text-xl font-medium tracking-wide text-white group-hover:text-red-300 transition-colors">
-                      {dish.name}
-                    </h3>
-                    <span className="shrink-0 font-mono text-sm font-bold text-red-400">
-                      {dish.price}
-                    </span>
-                  </div>
+              
+<motion.div
+  key={dish.name}
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{
+    duration: 0.4,
+    delay: index * 0.07,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  whileHover={{
+    y: -6,
+    transition: { duration: 0.25 },
+  }}
+  whileTap={{ scale: 0.985 }}
+  className="group relative flex flex-col justify-between overflow-hidden border border-white/10 bg-white/3 p-6 transition-colors duration-500 hover:border-[#9B493B]/70 hover:bg-white/6"
+>
+  <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-[#8c3b2b]/9 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-                  <p className="mt-2.5 text-sm leading-relaxed text-zinc-400">
-                    {dish.description}
-                  </p>
-                </div>
+  <div className="relative z-10">
+    <div className="flex items-start justify-between gap-4">
+      <h3 className="font-serif text-xl font-medium tracking-wide text-white transition-colors duration-300 group-hover:text-[#E9A99A]">
+        {dish.name}
+      </h3>
 
-                {/* Dish Tag Badge */}
-                {dish.badge && (
-                  <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
-                    {dish.badge === "Spicy" && (
-                      <Flame className="h-3.5 w-3.5 text-red-500" />
-                    )}
-                    {dish.badge === "Vegetarian" && (
-                      <Leaf className="h-3.5 w-3.5 text-green-400" />
-                    )}
-                    {(dish.badge === "House Favorite" ||
-                      dish.badge === "For You Tradition") && (
-                      <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-                    )}
-                    {dish.badge !== "Spicy" &&
-                      dish.badge !== "Vegetarian" &&
-                      dish.badge !== "House Favorite" &&
-                      dish.badge !== "For You Tradition" && (
-                        <UtensilsCrossed className="h-3.5 w-3.5 text-red-400" />
-                      )}
-                    <span>{dish.badge}</span>
-                  </div>
-                )}
-              </motion.div>
+      <span className="shrink-0 font-mono text-sm font-bold text-red-400 transition-transform duration-300 group-hover:scale-105">
+        {dish.price}
+      </span>
+    </div>
+
+    <p className="mt-2.5 text-sm leading-relaxed text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
+      {dish.description}
+    </p>
+  </div>
+
+  {dish.badge && (
+    <div className="relative z-10 mt-4 flex items-center gap-1.5 border-t border-white/5 pt-3 text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
+      {dish.badge === "Spicy" && (
+        <Flame className="h-3.5 w-3.5 text-red-500" />
+      )}
+
+      {dish.badge === "Vegetarian" && (
+        <Leaf className="h-3.5 w-3.5 text-green-400" />
+      )}
+
+      {(dish.badge === "House Favorite" ||
+        dish.badge === "For You Tradition") && (
+        <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+      )}
+
+      {dish.badge !== "Spicy" &&
+        dish.badge !== "Vegetarian" &&
+        dish.badge !== "House Favorite" &&
+        dish.badge !== "For You Tradition" && (
+          <UtensilsCrossed className="h-3.5 w-3.5 text-red-400" />
+        )}
+
+      <span>{dish.badge}</span>
+    </div>
+  )}
+</motion.div>
+
             ))}
           </motion.div>
         </AnimatePresence>

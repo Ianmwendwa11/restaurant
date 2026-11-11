@@ -18,7 +18,8 @@ import { MenuSection } from "@/components/MenuSection"
 import { MobileNav } from "@/components/MobileNav"
 import { HeroSection } from "@/components/HeroSection"
 import { GallerySection } from "@/components/GallerySection"
-
+import { ScrollExperience } from "@/components/ScrollExperience"
+import { Reveal } from "@/components/Reveal"
 
 
 // Gallery images should be placed in the public/ directory.
@@ -104,7 +105,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen scroll-smooth bg-[#fafafa] font-sans text-zinc-900">
-      {/* Floating glass header */}
+      <ScrollExperience />
       <motion.header
         animate={{
           backgroundColor: isScrolled
@@ -172,154 +173,206 @@ export default function Home() {
       <MenuSection />
 
 
-      {/* Garden patio and contact footer */}
-      <footer
-        id="location"
-        className="relative flex min-h-[85vh] flex-col justify-between overflow-hidden bg-zinc-950 text-white"
+
+{/* Garden patio and contact footer */}
+<footer
+  id="location"
+  className="relative flex min-h-[85vh] flex-col justify-between overflow-hidden bg-zinc-950 text-white"
+>
+  <div className="absolute inset-0 z-0">
+    <Image
+      src="/garden-bg.jpg"
+      alt="For You Chinese Restaurant garden patio"
+      fill
+      quality={90}
+      sizes="100vw"
+      className="object-cover opacity-65"
+    />
+  </div>
+
+  <div className="absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/45 to-black/30" />
+
+  <div className="relative z-20 mx-auto grid w-full max-w-7xl gap-10 px-6 pb-16 pt-16 lg:grid-cols-2 lg:px-8">
+
+    {/* Restaurant introduction */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.85,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="space-y-5 self-center"
+    >
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.15, duration: 0.5 }}
+        className="inline-block rounded-full border border-white/20 bg-black/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-200 backdrop-blur-md"
       >
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/garden-bg.jpg"
-            alt="For You Chinese Restaurant garden patio"
-            fill
-            quality={90}
-            sizes="100vw"
-            className="object-cover opacity-65"
-          />
-        </div>
+        Gitanga Road, Lavington · Nairobi
+      </motion.span>
 
-        <div className="absolute inset-0 z-10 bg-linear-to-t from-black/90 via-black/45 to-black/30" />
+      <motion.h2
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.25, duration: 0.65 }}
+        className="font-serif text-5xl italic tracking-wide sm:text-6xl"
+      >
+        For you
+      </motion.h2>
 
-        <div className="relative z-20 mx-auto grid w-full max-w-7xl gap-10 px-6 pb-16 pt-16 lg:grid-cols-2 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7 }}
-            className="space-y-5 self-center"
+      <motion.p
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.35, duration: 0.6 }}
+        className="text-xs font-bold uppercase tracking-[0.25em] text-red-300"
+      >
+        Chinese Restaurant
+      </motion.p>
+
+      <motion.p
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.45, duration: 0.7 }}
+        className="max-w-xl text-base leading-7 text-white/80"
+      >
+        Escape the Nairobi rush. Enjoy generous family-style platters in
+        our converted Lavington home or unwind under the trees in our
+        spacious garden patio.
+      </motion.p>
+    </motion.div>
+
+    {/* Contact card */}
+    <motion.div
+      initial={{ opacity: 0, x: 30, scale: 0.97 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{
+        duration: 0.9,
+        delay: 0.15,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="space-y-6 self-center rounded-xl border border-white/15 bg-black/60 p-6 shadow-2xl backdrop-blur-md sm:p-8"
+    >
+      <h3 className="text-lg font-semibold tracking-wide">
+        Get in touch
+      </h3>
+
+      {/* Email */}
+      <div className="group flex items-start gap-3">
+        <Mail className="mt-1 h-5 w-5 shrink-0 text-red-300 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+        <div>
+          <p className="text-sm text-white/60">Email</p>
+          <a
+            href={`mailto:${EMAIL_ADDRESS}`}
+            className="break-all text-white transition-colors duration-300 hover:text-red-300"
           >
-            <span className="inline-block rounded-full border border-white/20 bg-black/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-200 backdrop-blur-md">
-              Gitanga Road, Lavington · Nairobi
-            </span>
+            {EMAIL_ADDRESS}
+          </a>
+        </div>
+      </div>
 
-            <h2 className="font-serif text-5xl italic tracking-wide sm:text-6xl">
-              For you
-            </h2>
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-red-300">
-              Chinese Restaurant
-            </p>
-            <p className="max-w-xl text-base leading-7 text-white/80">
-              Escape the Nairobi rush. Enjoy generous family-style platters in
-              our converted Lavington home or unwind under the trees in our
-              spacious garden patio.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="space-y-6 self-center rounded-xl border border-white/15 bg-black/60 p-6 shadow-2xl backdrop-blur-md sm:p-8"
+      {/* Instagram */}
+      <div className="group flex items-start gap-3">
+        <FaInstagram className="mt-1 h-5 w-5 shrink-0 text-red-300 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+        <div>
+          <p className="text-sm text-white/60">Instagram</p>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-white transition-colors duration-300 hover:text-red-300"
           >
-            <h3 className="text-lg font-semibold tracking-wide">
-              Get in touch
-            </h3>
-
-            <div className="flex items-start gap-3">
-              <Mail className="mt-1 h-5 w-5 shrink-0 text-red-300" aria-hidden="true" />
-              <div>
-                <p className="text-sm text-white/60">Email</p>
-                <a
-                  href={`mailto:${EMAIL_ADDRESS}`}
-                  className="break-all text-white transition-colors hover:text-red-300"
-                >
-                  {EMAIL_ADDRESS}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <FaInstagram className="mt-1 h-5 w-5 shrink-0 text-red-300" aria-hidden="true" />
-              <div>
-                <p className="text-sm text-white/60">Instagram</p>
-                <a
-                  href={INSTAGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-white transition-colors hover:text-red-300"
-                >
-                  {INSTAGRAM_HANDLE}
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <Phone className="mt-1 h-5 w-5 shrink-0 text-red-300" aria-hidden="true" />
-              <div>
-                <p className="text-sm text-white/60">Phone / Delivery</p>
-                <a
-                  href="tel:+254712345678"
-                  className="text-white transition-colors hover:text-red-300"
-                >
-                  {PHONE_NUMBER}
-                </a>
-                <button
-                  type="button"
-                  onClick={handleCopyPhone}
-                  className="mt-2 inline-flex items-center gap-2 text-sm text-white/80 transition-colors hover:text-white"
-                  aria-label="Copy phone number"
-                >
-                  {copied ? (
-                    <Check className="h-4 w-4" aria-hidden="true" />
-                  ) : (
-                    <Copy className="h-4 w-4" aria-hidden="true" />
-                  )}
-                  {copied ? "Copied" : "Copy phone number"}
-                </button>
-                {copied && (
-                  <p role="status" className="mt-1 text-xs text-green-300">
-                    Copied to clipboard!
-                  </p>
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <Clock className="mt-1 h-5 w-5 shrink-0 text-red-300" aria-hidden="true" />
-              <div>
-                <p className="text-sm text-white/60">Opening hours</p>
-                <p className="text-white">Open Daily</p>
-                <p className="text-white/80">12:00 PM – 10:00 PM</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-300" aria-hidden="true" />
-              <div>
-                <p className="text-sm text-white/60">Find us</p>
-                <p className="text-white">
-                  Gitanga Road, near Valley Arcade, Nairobi
-                </p>
-                <a
-                  href={DIRECTIONS_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-2 inline-block text-sm font-semibold text-red-300 transition-colors hover:text-white"
-                >
-                  Get Directions
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            {INSTAGRAM_HANDLE}
+          </a>
         </div>
+      </div>
 
-        <div className="relative z-20 border-t border-white/10 px-6 py-5 text-center text-xs text-white/60">
-          © {new Date().getFullYear()} For You Chinese Restaurant Nairobi. All
-          rights reserved.
+      {/* Phone */}
+      <div className="group flex items-start gap-3">
+        <Phone className="mt-1 h-5 w-5 shrink-0 text-red-300 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+        <div>
+          <p className="text-sm text-white/60">Phone / Delivery</p>
+          <a
+            href="tel:+254735536090"
+            className="text-white transition-colors duration-300 hover:text-red-300"
+          >
+            {PHONE_NUMBER}
+          </a>
+
+          <button
+            type="button"
+            onClick={handleCopyPhone}
+            className="mt-2 inline-flex items-center gap-2 text-sm text-white/80 transition-colors duration-300 hover:text-white"
+            aria-label="Copy phone number"
+          >
+            {copied ? (
+              <Check className="h-4 w-4" aria-hidden="true" />
+            ) : (
+              <Copy className="h-4 w-4" aria-hidden="true" />
+            )}
+            {copied ? "Copied" : "Copy phone number"}
+          </button>
+
+          {copied && (
+            <p role="status" className="mt-1 text-xs text-green-300">
+              Copied to clipboard!
+            </p>
+          )}
         </div>
+      </div>
+
+      {/* Opening hours */}
+      <div className="group flex items-start gap-3">
+        <Clock className="mt-1 h-5 w-5 shrink-0 text-red-300 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+        <div>
+          <p className="text-sm text-white/60">Opening hours</p>
+          <p className="text-white">Open Daily</p>
+          <p className="text-white/80">12:00 PM – 10:00 PM</p>
+        </div>
+      </div>
+
+      {/* Location */}
+      <div className="group flex items-start gap-3">
+        <MapPin className="mt-1 h-5 w-5 shrink-0 text-red-300 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+        <div>
+          <p className="text-sm text-white/60">Find us</p>
+          <p className="text-white">
+            Gitanga Road, near Valley Arcade, Nairobi
+          </p>
+          <a
+            href={DIRECTIONS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-block text-sm font-semibold text-red-300 transition-colors duration-300 hover:text-white"
+          >
+            Get Directions
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+
+  {/* Copyright */}
+  <motion.div
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, delay: 0.2 }}
+    className="relative z-20 border-t border-white/10 px-6 py-5 text-center text-xs text-white/60"
+  >
+    © {new Date().getFullYear()} For You Chinese Restaurant Nairobi. All
+    rights reserved.
+  </motion.div>
       </footer>
     </main>
   )
 }
+  
   

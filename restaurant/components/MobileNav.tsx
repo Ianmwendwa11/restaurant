@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Menu, MapPin, Clock, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
+import { ReservationModal } from "@/components/ReservationModal"
 import {
   Sheet,
   SheetContent,
@@ -58,18 +60,33 @@ export function MobileNav({ isScrolled = false }: MobileNavProps) {
             </SheetHeader>
 
             {/* Navigation Links */}
-            <nav className="mt-8 flex flex-col space-y-5">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="text-lg font-semibold tracking-wide text-zinc-800 transition-colors hover:text-[#8c3b2b]"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+            
+<nav className="mt-8 flex flex-col gap-6">
+  {NAV_LINKS.map((link, index) => (
+    <motion.a
+      key={link.href}
+      href={link.href}
+      onClick={() => setOpen(false)}
+      initial={{ opacity: 0, x: 15 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        duration: 0.35,
+        delay: index * 0.08,
+      }}
+      whileTap={{ scale: 0.97 }}
+      className="group flex items-center justify-between text-lg font-semibold tracking-wide text-zinc-800 transition-colors duration-300 hover:text-[#8c3b2b]"
+    >
+      {link.label}
+
+      <span className="h-px w-0 bg-[#8c3b2b] transition-all duration-300 group-hover:w-8" />
+    </motion.a>
+  ))}
+</nav>
+
+<div className="mt-10">
+  <ReservationModal />
+</div>
+
           </div>
 
           {/* Quick Nairobi Info at Bottom of Drawer */}
@@ -85,7 +102,7 @@ export function MobileNav({ isScrolled = false }: MobileNavProps) {
             <div className="flex items-center gap-2">
               <Phone className="h-4 w-4 text-[#8c3b2b]" />
               <a href="tel:+254712345678" className="font-semibold text-zinc-900">
-                +254 712 345 678
+                +254735536090
               </a>
             </div>
           </div>
